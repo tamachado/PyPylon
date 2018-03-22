@@ -66,6 +66,7 @@ cdef extern from *:
     INodeMap* dynamic_cast_inodemap_ptr "dynamic_cast<GenApi::INodeMap*>" (INode*) except +
     ICategory* dynamic_cast_icategory_ptr "dynamic_cast<GenApi::ICategory*>" (INode*) except +
 
+    bool node_is_available "GenApi::IsAvailable" (INode*) except +
     bool node_is_readable "GenApi::IsReadable" (INode*) except +
     bool node_is_writable "GenApi::IsWritable" (INode*) except +
     bool node_is_implemented "GenApi::IsImplemented" (INode*) except +
@@ -118,6 +119,7 @@ cdef extern from "pylon/PylonIncludes.h" namespace 'Pylon':
         void Close() except +
         bool IsOpen() except +
         IPylonDevice* DetachDevice() except +
+        void StopGrabbing() except +
         void StartGrabbing(size_t maxImages) except +    #FIXME: implement different strategies
         bool IsGrabbing()
         # RetrieveResult() is blocking call into C++ native SDK, allow it to be called without GIL
